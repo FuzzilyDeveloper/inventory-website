@@ -13,10 +13,10 @@ async function loadDashboardStats() {
     try {
         const stats = await apiGet('/dashboard/stats');
         
-        document.getElementById('totalProducts').textContent = stats.TotalProducts || 0;
-        document.getElementById('lowStockProducts').textContent = stats.LowStockProducts || 0;
-        document.getElementById('totalValue').textContent = formatCurrency(stats.TotalInventoryValue || 0);
-        document.getElementById('recentTransactions').textContent = stats.RecentTransactions || 0;
+        document.getElementById('totalProducts').textContent = stats.totalproducts || 0;
+        document.getElementById('lowStockProducts').textContent = stats.lowstockproducts || 0;
+        document.getElementById('totalValue').textContent = formatCurrency(stats.totalinventoryvalue || 0);
+        document.getElementById('recentTransactions').textContent = stats.recenttransactions || 0;
     } catch (error) {
         console.error('Error loading dashboard stats:', error);
     }
@@ -35,14 +35,14 @@ async function loadLowStockProducts() {
         
         tableBody.innerHTML = products.map(product => `
             <tr>
-                <td>${product.ProductCode}</td>
-                <td>${product.ProductName}</td>
-                <td>${product.CategoryName || 'N/A'}</td>
-                <td><span class="font-bold ${product.CurrentStock === 0 ? 'text-danger' : 'text-warning'}">${product.CurrentStock}</span></td>
-                <td>${product.ReorderLevel}</td>
+                <td>${product.productcode}</td>
+                <td>${product.productname}</td>
+                <td>${product.categoryname || 'N/A'}</td>
+                <td><span class="font-bold ${product.currentstock === 0 ? 'text-danger' : 'text-warning'}">${product.currentstock}</span></td>
+                <td>${product.reorderlevel}</td>
                 <td>
-                    <span class="status-badge ${product.CurrentStock === 0 ? 'status-empty' : 'status-low'}">
-                        ${product.CurrentStock === 0 ? 'Out of Stock' : 'Low Stock'}
+                    <span class="status-badge ${product.currentstock === 0 ? 'status-empty' : 'status-low'}">
+                        ${product.currentstock === 0 ? 'Out of Stock' : 'Low Stock'}
                     </span>
                 </td>
             </tr>
@@ -67,16 +67,16 @@ async function loadRecentTransactions() {
         
         tableBody.innerHTML = transactions.map(transaction => `
             <tr>
-                <td>${formatDateShort(transaction.TransactionDate)}</td>
-                <td>${transaction.ProductCode} - ${transaction.ProductName}</td>
-                <td>${transaction.WarehouseName}</td>
+                <td>${formatDateShort(transaction.transactiondate)}</td>
+                <td>${transaction.productcode} - ${transaction.productname}</td>
+                <td>${transaction.warehousename}</td>
                 <td>
-                    <span class="status-badge transaction-${transaction.TransactionType.toLowerCase()}">
-                        ${transaction.TransactionType}
+                    <span class="status-badge transaction-${transaction.transactiontype.toLowerCase()}">
+                        ${transaction.transactiontype}
                     </span>
                 </td>
-                <td>${transaction.Quantity}</td>
-                <td>${transaction.UserName}</td>
+                <td>${transaction.quantity}</td>
+                <td>${transaction.username}</td>
             </tr>
         `).join('');
     } catch (error) {
