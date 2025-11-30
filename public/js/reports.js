@@ -39,16 +39,16 @@ async function loadInventoryValueReport() {
         
         tableBody.innerHTML = data.map(item => `
             <tr>
-                <td><strong>${item.WarehouseName}</strong></td>
+                <td><strong>${item.warehousename}</strong></td>
                 <td>${item.UniqueProducts}</td>
-                <td>${item.TotalUnits}</td>
-                <td class="font-bold text-primary">${formatCurrency(item.TotalValue)}</td>
+                <td>${item.totalunits}</td>
+                <td class="font-bold text-primary">${formatCurrency(item.totalvalue)}</td>
             </tr>
         `).join('');
         
         // Add total row
-        const totalValue = data.reduce((sum, item) => sum + parseFloat(item.TotalValue), 0);
-        const totalUnits = data.reduce((sum, item) => sum + parseInt(item.TotalUnits), 0);
+        const totalValue = data.reduce((sum, item) => sum + parseFloat(item.totalvalue), 0);
+        const totalUnits = data.reduce((sum, item) => sum + parseInt(item.totalunits), 0);
         tableBody.innerHTML += `
             <tr style="background-color: var(--bg-secondary); font-weight: 600;">
                 <td>TOTAL</td>
@@ -77,17 +77,17 @@ async function loadCategoryBreakdownReport() {
         
         tableBody.innerHTML = data.map(item => `
             <tr>
-                <td><strong>${item.CategoryName}</strong></td>
-                <td>${item.ProductCount}</td>
-                <td>${item.TotalUnits}</td>
-                <td class="font-bold text-primary">${formatCurrency(item.TotalValue)}</td>
+                <td><strong>${item.categoryname}</strong></td>
+                <td>${item.productcount}</td>
+                <td>${item.totalunits}</td>
+                <td class="font-bold text-primary">${formatCurrency(item.totalvalue)}</td>
             </tr>
         `).join('');
         
         // Add total row
-        const totalValue = data.reduce((sum, item) => sum + parseFloat(item.TotalValue), 0);
-        const totalUnits = data.reduce((sum, item) => sum + parseInt(item.TotalUnits), 0);
-        const totalProducts = data.reduce((sum, item) => sum + parseInt(item.ProductCount), 0);
+        const totalValue = data.reduce((sum, item) => sum + parseFloat(item.totalvalue), 0);
+        const totalUnits = data.reduce((sum, item) => sum + parseInt(item.totalunits), 0);
+        const totalProducts = data.reduce((sum, item) => sum + parseInt(item.productcount), 0);
         tableBody.innerHTML += `
             <tr style="background-color: var(--bg-secondary); font-weight: 600;">
                 <td>TOTAL</td>
@@ -117,19 +117,19 @@ async function loadTransactionReport() {
         
         tableBody.innerHTML = data.map(transaction => `
             <tr>
-                <td>${formatDate(transaction.TransactionDate)}</td>
-                <td>${transaction.ProductCode}</td>
-                <td>${transaction.ProductName}</td>
-                <td>${transaction.WarehouseName}</td>
+                <td>${formatDate(transaction.transactiondate)}</td>
+                <td>${transaction.productcode}</td>
+                <td>${transaction.productname}</td>
+                <td>${transaction.warehousename}</td>
                 <td>
-                    <span class="status-badge transaction-${transaction.TransactionType.toLowerCase()}">
-                        ${transaction.TransactionType}
+                    <span class="status-badge transaction-${transaction.transactiontype.toLowerCase()}">
+                        ${transaction.transactiontype}
                     </span>
                 </td>
-                <td>${transaction.Quantity}</td>
+                <td>${transaction.quantity}</td>
                 <td>${formatCurrency(transaction.TransactionValue)}</td>
-                <td>${transaction.UserName}</td>
-                <td>${transaction.Notes || '-'}</td>
+                <td>${transaction.username}</td>
+                <td>${transaction.notes || '-'}</td>
             </tr>
         `).join('');
     } catch (error) {

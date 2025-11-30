@@ -38,17 +38,17 @@ function displayWarehouses(warehouses) {
                     <i class="fas fa-warehouse"></i>
                 </div>
                 <div class="warehouse-info">
-                    <h3>${warehouse.WarehouseName}</h3>
+                    <h3>${warehouse.warehousename}</h3>
                     <div class="warehouse-location">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>${warehouse.Location || 'Location not specified'}</span>
+                        <span>${warehouse.location || 'Location not specified'}</span>
                     </div>
                 </div>
             </div>
             <div class="warehouse-details">
                 <div class="warehouse-detail">
                     <div class="warehouse-detail-label">Products</div>
-                    <div class="warehouse-detail-value">${warehouse.ProductCount}</div>
+                    <div class="warehouse-detail-value">${warehouse.productcount}</div>
                 </div>
                 <div class="warehouse-detail">
                     <div class="warehouse-detail-label">Total Items</div>
@@ -56,11 +56,11 @@ function displayWarehouses(warehouses) {
                 </div>
                 <div class="warehouse-detail">
                     <div class="warehouse-detail-label">Capacity</div>
-                    <div class="warehouse-detail-value">${warehouse.Capacity || 'N/A'}</div>
+                    <div class="warehouse-detail-value">${warehouse.capacity || 'N/A'}</div>
                 </div>
                 <div class="warehouse-detail">
                     <div class="warehouse-detail-label">Manager</div>
-                    <div class="warehouse-detail-value" style="font-size: 0.875rem;">${warehouse.ManagerName || 'N/A'}</div>
+                    <div class="warehouse-detail-value" style="font-size: 0.875rem;">${warehouse.managername || 'N/A'}</div>
                 </div>
             </div>
         </div>

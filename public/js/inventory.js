@@ -37,25 +37,25 @@ function displayInventory(inventory) {
     }
     
     tableBody.innerHTML = inventory.map(item => {
-        const statusClass = item.StockStatus === 'Low' ? 'status-low' : 
-                          item.StockStatus === 'Empty' ? 'status-empty' : 'status-good';
+        const statusClass = item.stockstatus === 'Low' ? 'status-low' : 
+                          item.stockstatus === 'Empty' ? 'status-empty' : 'status-good';
         
         return `
             <tr>
-                <td>${item.ProductCode}</td>
-                <td><strong>${item.ProductName}</strong></td>
-                <td>${item.CategoryName}</td>
-                <td>${item.WarehouseName}</td>
-                <td><span class="font-bold">${item.Quantity}</span></td>
-                <td>${formatCurrency(item.UnitPrice)}</td>
-                <td>${formatCurrency(item.TotalValue)}</td>
-                <td>${item.LastRestockDate ? formatDateShort(item.LastRestockDate) : 'N/A'}</td>
-                <td><span class="status-badge ${statusClass}">${item.StockStatus}</span></td>
+                <td>${item.productcode}</td>
+                <td><strong>${item.productname}</strong></td>
+                <td>${item.categoryname}</td>
+                <td>${item.warehousename}</td>
+                <td><span class="font-bold">${item.quantity}</span></td>
+                <td>${formatCurrency(item.unitprice)}</td>
+                <td>${formatCurrency(item.totalvalue)}</td>
+                <td>${item.lastrestockdate ? formatDateShort(item.lastrestockdate) : 'N/A'}</td>
+                <td><span class="status-badge ${statusClass}">${item.stockstatus}</span></td>
                 <td>
-                    <button class="btn btn-sm btn-success" onclick="quickAdjust(${item.InventoryID}, 'IN')">
+                    <button class="btn btn-sm btn-success" onclick="quickAdjust(${item.inventoryid}, 'IN')">
                         <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn btn-sm btn-danger" onclick="quickAdjust(${item.InventoryID}, 'OUT')">
+                    <button class="btn btn-sm btn-danger" onclick="quickAdjust(${item.inventoryid}, 'OUT')">
                         <i class="fas fa-minus"></i>
                     </button>
                 </td>
@@ -70,7 +70,7 @@ async function loadProductsForDropdown() {
         products = await apiGet('/products');
         const select = document.getElementById('productSelect');
         select.innerHTML = '<option value="">Select Product</option>' + 
-            products.map(prod => `<option value="${prod.ProductID}">${prod.ProductCode} - ${prod.ProductName}</option>`).join('');
+            products.map(prod => `<option value="${prod.productid}">${prod.productcode} - ${prod.productname}</option>`).join('');
     } catch (error) {
         console.error('Error loading products:', error);
     }
@@ -82,7 +82,7 @@ async function loadWarehousesForDropdown() {
         warehouses = await apiGet('/warehouses');
         const select = document.getElementById('warehouseSelect');
         select.innerHTML = '<option value="">Select Warehouse</option>' + 
-            warehouses.map(wh => `<option value="${wh.WarehouseID}">${wh.WarehouseName}</option>`).join('');
+            warehouses.map(wh => `<option value="${wh.warehouseid}">${wh.warehousename}</option>`).join('');
     } catch (error) {
         console.error('Error loading warehouses:', error);
     }

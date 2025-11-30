@@ -33,13 +33,13 @@ function displaySuppliers(suppliers) {
     
     tableBody.innerHTML = suppliers.map(supplier => `
         <tr>
-            <td><strong>${supplier.SupplierName}</strong></td>
-            <td>${supplier.ContactPerson || 'N/A'}</td>
-            <td>${supplier.Email || 'N/A'}</td>
-            <td>${supplier.Phone || 'N/A'}</td>
-            <td>${supplier.City || 'N/A'}</td>
-            <td>${supplier.Country || 'N/A'}</td>
-            <td><span class="status-badge status-good">${supplier.ProductCount} Products</span></td>
+            <td><strong>${supplier.suppliername}</strong></td>
+            <td>${supplier.contactperson || 'N/A'}</td>
+            <td>${supplier.email || 'N/A'}</td>
+            <td>${supplier.phone || 'N/A'}</td>
+            <td>${supplier.city || 'N/A'}</td>
+            <td>${supplier.country || 'N/A'}</td>
+            <td><span class="status-badge status-good">${supplier.productcount} Products</span></td>
         </tr>
     `).join('');
 }

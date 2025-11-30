@@ -33,11 +33,11 @@ function displayCategories(categories) {
     
     grid.innerHTML = categories.map(category => `
         <div class="category-card">
-            <h3>${category.CategoryName}</h3>
-            <p>${category.Description || 'No description'}</p>
+            <h3>${category.categoryname}</h3>
+            <p>${category.description || 'No description'}</p>
             <div class="category-stats">
                 <i class="fas fa-box"></i>
-                <span>${category.ProductCount} Products</span>
+                <span>${category.productcount} Products</span>
             </div>
         </div>
     `).join('');
