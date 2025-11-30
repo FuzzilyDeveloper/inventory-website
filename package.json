@@ -1,16 +1,16 @@
 {
   "name": "inventory-control-system",
   "version": "1.0.0",
-  "description": "Professional Inventory Control System with SQL Server",
-  "main": "server.js",
+  "description": "Professional Inventory Control System with PostgreSQL",
+  "main": "server-postgres.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node server-postgres.js",
+    "dev": "nodemon server-postgres.js"
   },
   "keywords": [
     "inventory",
     "management",
-    "sql-server"
+    "postgresql"
   ],
   "author": "",
   "license": "MIT",
